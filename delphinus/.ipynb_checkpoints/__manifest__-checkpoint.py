@@ -12,7 +12,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/account_move_view.xml',
-        'views/optesis_pivot.xml',
+        #'views/optesis_pivot.xml',
         'views/purchase_order_view.xml',
         'views/sale_order_view.xml',
         'views/res_partner_view.xml',
