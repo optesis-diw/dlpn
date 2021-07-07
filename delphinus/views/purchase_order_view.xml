@@ -6,11 +6,38 @@
            <record id="purchase_order_new_view_tree_inherit" model="ir.ui.view">
             <field name="name">purchase.order.form.inherit</field>
             <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="product_qty_total"/>
                 </xpath>
+                
+                
+                
+                  <xpath expr="//field[@name='amount_total']" position="after">
+                   
+                    <field name="name_currency" invisible="1"/>
+                </xpath>
+                
+                
+                 <xpath expr="//field[@name='amount_total']" position="before">
+                   
+                    <field name="amount_total_euro"  sum="total euro" attrs="{'invisible': [('name_currency','!=', 'EUR')]}"/>
+                </xpath>
+                
+                
+                 <xpath expr="//field[@name='amount_total_euro']" position="after">
+                   
+                    <field name="amount_total_cfa"  sum="total CFA" attrs="{'invisible': [('name_currency','!=', 'XOF')]}"/>
+                </xpath>
+                
+              
+                 
+                
+                
+              
+                
+                
             </field>
          </record>
       
@@ -48,9 +75,7 @@
                     <field name="lieu_id" domain="[('partner_id', '=', partner_id)]"/>
                 </field>
 
-                <field name="lieu_id" position="after">
-                    <field name="product_qty_total" invisible="1"/>
-                </field>
+             
                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='product_qty']" position="after">
                     <field name="section_frais"/>
                      <field name="lieu_collecte_ids"/>

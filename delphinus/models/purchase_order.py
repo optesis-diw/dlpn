@@ -15,6 +15,8 @@ class PurchaseOrder(models.Model):
     
     product_qty_total = fields.Float(string='Somme de poids', digits='Product Unit of Measure', compute="_poids_achat_total")
     
+   
+    
     
     @api.onchange('product_qty', 'order_line')
     def _poids_achat_total(self):
@@ -22,6 +24,32 @@ class PurchaseOrder(models.Model):
             total = sum(rec.order_line.mapped('product_qty'))
             rec.product_qty_total = total
 
+    
+    name_currency = fields.Char(related="currency_id.name")
+    
+    amount_total_cfa = fields.Float(string='Total cfa', compute="_amount_total_cfa")
+   
+    
+    @api.onchange('amount_total', 'currency_id')
+    def _amount_total_cfa(self):
+        for rec in self:
+            if rec.name_currency == 'XOF':
+                rec.amount_total_cfa = rec.amount_total
+            else:
+                rec.amount_total_cfa = 0  
+            
+                
+    amount_total_euro = fields.Float(string='Total Euro', compute="_amount_total_euro")
+   
+    
+    @api.onchange('amount_total', 'currency_id')
+    def _amount_total_euro(self):
+        for rec in self:
+            if rec.name_currency == 'EUR':
+                rec.amount_total_euro = rec.amount_total
+            else:
+                rec.amount_total_euro = 0            
+                
     collecteur_id = fields.Many2one('optesis.collecteur.line', string='Collecteur')
     lieu_id = fields.Many2one('optesis.lieu.line', string='Lieu de Peche')
 
