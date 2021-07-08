@@ -39,7 +39,7 @@ class PurchaseOrder(models.Model):
                 rec.amount_total_cfa = 0  
             
                 
-    amount_total_euro = fields.Float(string='Total Euro', compute="_amount_total_euro")
+    amount_total_euro = fields.Float(string='Total euro', compute="_amount_total_euro")
    
     
     @api.onchange('amount_total', 'currency_id')
@@ -48,7 +48,18 @@ class PurchaseOrder(models.Model):
             if rec.name_currency == 'EUR':
                 rec.amount_total_euro = rec.amount_total
             else:
-                rec.amount_total_euro = 0            
+                rec.amount_total_euro = 0
+                
+    amount_total_cfa_euro = fields.Float(string='Total cfa', compute="_amount_total_cfa_euro", widget="monetary")
+   
+    
+    @api.onchange('amount_total', 'currency_id')
+    def _amount_total_cfa_euro(self):
+        for rec in self:
+            if rec.name_currency == 'EUR':
+                rec.amount_total_cfa_euro = rec.amount_total * 605
+            else:
+                rec.amount_total_cfa_euro = rec.amount_total              
                 
     collecteur_id = fields.Many2one('optesis.collecteur.line', string='Collecteur')
     lieu_id = fields.Many2one('optesis.lieu.line', string='Lieu de Peche')

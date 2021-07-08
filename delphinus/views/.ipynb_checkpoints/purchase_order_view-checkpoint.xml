@@ -31,10 +31,12 @@
                     <field name="amount_total_cfa"  sum="total CFA" attrs="{'invisible': [('name_currency','!=', 'XOF')]}"/>
                 </xpath>
                 
-              
-                 
+                   <xpath expr="//field[@name='amount_total_cfa']" position="after">
+                   
+                    <field name="amount_total_cfa_euro"  sum="total"/>
+                </xpath>
                 
-                
+            
               
                 
                 
