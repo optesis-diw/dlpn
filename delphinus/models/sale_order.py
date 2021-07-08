@@ -29,7 +29,7 @@ class saleOrder(models.Model):
     def _amount_total_cfa_euro_vente(self):
         for rec in self:
             if rec.name_currency == 'EUR':
-                rec.amount_total_cfa_euro = rec.amount_total * 605
+                rec.amount_total_cfa_euro = rec.amount_total * 655.93
             else:
                 rec.amount_total_cfa_euro = rec.amount_total            
             
