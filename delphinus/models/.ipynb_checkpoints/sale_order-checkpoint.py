@@ -19,5 +19,19 @@ class saleOrder(models.Model):
             total = sum(rec.order_line.mapped('product_uom_qty'))
             rec.product_uom_qty_total = total
             
+            
+    name_currency = fields.Char(related="currency_id.name")
+    
+    amount_total_cfa_euro = fields.Float(string='Total cfa', compute="_amount_total_cfa_euro_vente", widget="monetary")
+   
+    
+    @api.onchange('amount_total', 'currency_id')
+    def _amount_total_cfa_euro_vente(self):
+        for rec in self:
+            if rec.name_currency == 'EUR':
+                rec.amount_total_cfa_euro = rec.amount_total * 605
+            else:
+                rec.amount_total_cfa_euro = rec.amount_total            
+            
 class saleOrderrLine(models.Model):
     _inherit = "sale.order.line"            

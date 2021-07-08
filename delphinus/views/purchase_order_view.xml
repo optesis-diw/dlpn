@@ -22,13 +22,13 @@
                 
                  <xpath expr="//field[@name='amount_total']" position="before">
                    
-                    <field name="amount_total_euro"  sum="total euro" attrs="{'invisible': [('name_currency','!=', 'EUR')]}"/>
+                    <field name="amount_total_euro"  sum="total euro" attrs="{'invisible': [('name_currency','!=', 'EUR')]}" invisible="1"/>
                 </xpath>
                 
                 
                  <xpath expr="//field[@name='amount_total_euro']" position="after">
                    
-                    <field name="amount_total_cfa"  sum="total CFA" attrs="{'invisible': [('name_currency','!=', 'XOF')]}"/>
+                    <field name="amount_total_cfa"  sum="total CFA" attrs="{'invisible': [('name_currency','!=', 'XOF')]}" invisible="1"/>
                 </xpath>
                 
                    <xpath expr="//field[@name='amount_total_cfa']" position="after">
