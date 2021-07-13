@@ -2,6 +2,21 @@
 <odoo>
     <data>
         
+            <record id="view_bon-commande_vente_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit.sale.crm</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="product_uom_qty_total"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="amount_total_cfa_euro"  sum="total"/>
+                </xpath>
+            </field>
+         </record>
+        
          <record id="view_quotation_tree" model="ir.ui.view">
             <field name="name">sale.order.tree.inherit.sale.crm</field>
             <field name="model">sale.order</field>
@@ -9,18 +24,13 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="product_uom_qty_total"/>
-                  
                 </xpath>
                 
-                 <xpath expr="//field[@name='amount_total']" position="before">
-                   
+                <xpath expr="//field[@name='amount_total']" position="before">
                     <field name="amount_total_cfa_euro"  sum="total"/>
                 </xpath>
-                
-            
-              
             </field>
-    </record>
+         </record>
         
         
          <record model="ir.ui.view" id="sale_order_view_inherit">

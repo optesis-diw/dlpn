@@ -24,7 +24,7 @@
         'views/optesis_report_delphinus.xml',
         'views/bon_delphinus_1.xml',
         'views/bon_delphinus.xml',
-        'report/report.xml',
+        #'report/report.xml',
         'report/optesis_custom_format.xml',
         'report/optesis_custom_format_facture.xml',
         

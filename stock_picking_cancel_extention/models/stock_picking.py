@@ -6,7 +6,7 @@ from odoo import api, models
 class Picking(models.Model):
     _inherit = "stock.picking"
 
-    @api.multi
+#    @api.multi
     def action_custom_cancel(self):
         # For Purchase Order (Receipts)
         # For Sale Order (Delivery Order)
