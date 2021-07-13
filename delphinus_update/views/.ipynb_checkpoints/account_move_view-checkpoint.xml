@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+         <record model="ir.ui.view" id="view_move_tree_inherit">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_untaxed_signed" position="before">
+                    <field name="quantity_poids_total"/>
+                </field>
+            </field>   
+        </record>
+    </data>
+</odoo>

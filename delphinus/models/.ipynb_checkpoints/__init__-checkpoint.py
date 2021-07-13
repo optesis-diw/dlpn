@@ -4,4 +4,3 @@ from . import purchase_order
 from . import sale_order_line
 from . import product
 from . import model
-from . import sale_order
